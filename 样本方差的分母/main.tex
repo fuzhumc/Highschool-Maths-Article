@@ -1,0 +1,159 @@
+\documentclass{article}
+\usepackage{../mathnotezh}
+
+\hypersetup{
+    pdftitle={样本方差的分母},
+    pdfauthor={tbj},
+    pdfsubject={Maths},
+    pdfcreator={LaTeX},
+    pdfproducer={XeLaTeX}
+}
+
+\title{样本方差的分母}
+\author{tbj}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{引言}
+
+在必修二课本第九章中,有这样一段注记
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=15em]{pic1.png}
+    \caption{教材注记}
+    \label{fig:pic1}
+\end{figure}
+
+我们的教材中定义$n$个数据$(x_1, x_2, \cdots, x_n)$的方差为
+\[ \dfrac{1}{n} \sum_{i = 1}^n (x_i - \overline{x})^2 \]
+其中$\overline{x}$为$(x_1, x_2, \cdots, x_n)$的平均值.这是符合直觉的.
+
+那为什么要说``计算器可能按$\dfrac{1}{n - 1} \sum_{i = 1}^n (x_i - \overline{x})^2$计算方差''？
+难道说计算器内置的公式是错误的吗?教材为什么不展开讲呢?
+
+这个问题在网上已有许多讨论与解答,但年年都有同学在阅读课本时产生疑问(可能是某种信息差吧).
+因此笔者决定写这篇文章发表在学报上,为大家解答疑惑.
+
+\section{随机变量的方差}
+
+这里我们给出一个引理.
+
+\begin{lem}[期望的可加性]
+    设$X, Y$为离散型随机变量,则$E(X + Y) = E(X) + E(Y)$.
+\end{lem}
+
+\begin{proof}
+    设$X$的取值为$\{ x_1, x_2, \cdots, x_m \}$,分布为$P(X = x_i) = p_i$;
+    设$Y$的取值为$\{ y_1, y_2, \cdots, y_n \}$,分布为$P(Y = y_j) = q_j$.
+    计算可知
+
+    \begin{align*}
+        E(X + Y) & = \sum_{i = 1}^m \sum_{j = 1}^n (x_i + y_j) p_i q_j \\
+        & = \sum_{i = 1}^m x_i p_i \sum_{j = 1}^n q_j + \sum_{j = 1}^n y_j q_j \sum_{i = 1}^m p_i \\
+        & = \sum_{i = 1}^m x_i p_i + \sum_{j = 1}^n y_j q_j \\
+        & = E(X) + E(Y) \qedhere
+    \end{align*}
+\end{proof}
+
+\begin{cor}
+    设$(X_1, X_2, \cdots, X_n)$为离散型随机变量,则$E \left( \sum\limits_{i = 1}^n X_i \right) = \sum\limits_{i = 1}^n E(X_i)$.
+\end{cor}
+
+我们定义随机变量的方差.
+
+\begin{deff}
+    设$X$为离散型随机变量,设其均值$E(X) = \mu$.定义其方差为$E \left( (X - \mu)^2 \right)$,记为$D(X)$或$\sigma^2$.
+\end{deff}
+
+\begin{prop}
+    设$X$为离散型随机变量,则$D(X) = E(X^2) - E(X)^2$.
+\end{prop}
+
+\begin{proof}
+    由期望的可加性知
+
+    \begin{align*}
+        D(X) & = E \left( (X - \mu)^2 \right) \\
+        & = E(X^2 - 2 \mu X + \mu^2) \\
+        & = E(X^2) - 2 \mu E(X) + E(\mu^2) \\
+        & = E(X^2) - 2 \mu^2 + \mu^2 \\
+        & = E(X^2) - \mu^2 \\
+        & = E(X^2) - (E(X))^2 \qedhere
+    \end{align*}
+\end{proof}
+
+\begin{prop}
+    设$X, Y$为离散型随机变量,且相互独立,则$D(X + Y) = D(X) + D(Y)$.
+\end{prop}
+
+\begin{proof}
+    由上可知
+
+    \begin{align*}
+        D(X + Y) & = E \left( (X + Y)^2 \right) - (E(X + Y))^2 \\
+        & = E(X^2 + 2XY + Y^2) - (E(X) + E(Y))^2 \\
+        & = E(X^2) + 2E(XY) + E(Y^2) - E(X)^2 - 2E(X)E(Y) - E(Y)^2 \\
+        & = E(X^2) - E(X)^2 + E(Y^2) - E(Y)^2 \\
+        & = D(X) + D(Y) \qedhere
+    \end{align*}
+\end{proof}
+
+\begin{cor}
+    设$(X_1, X_2, \cdots, X_n)$为离散型随机变量,且相互独立,则$D \left( \sum\limits_{i = 1}^n X_i \right) = \sum\limits_{i = 1}^n D(X_i)$.
+\end{cor}
+
+\section{方差的估计}
+
+对于离散型随机变量$X$,若知道其分布,那么容易求其均值与方差.
+但在实际问题中,我们往往不一定知道随机变量的分布,只能通过取一系列样本$(X_1, X_2, \cdots, X_n)$来估计.
+
+我们希望找到两个关于$(X_1, X_2, \cdots, X_n)$这$n$个样本数据的函数$\hat{\mu}$与$\hat{\sigma}^2$,
+能够尽可能``准确''地估计随机变量$X$的均值与方差.
+注意:这里$(X_1, X_2, \cdots, X_n)$都可以看作随机变量,它们相互独立,且与$X$同分布.
+$\hat{\mu}, \hat{\sigma}^2$为$(X_1, X_2, \cdots, X_n)$的函数,因此也为随机变量.
+
+那么考虑两个期望$E(\hat{\mu} - \mu)$与$E(\hat{\sigma}^2 - \sigma^2)$,我们希望这两个期望越小越好,最好为0.
+我们称这样的$\hat{\mu}$与$\hat{\sigma}^2$为\textbf{无偏估计}.
+
+我们可以自然地想到取$\hat{\mu} = \dfrac{1}{n} \sum\limits_{i = 1}^n X_i$,
+与$\hat{\sigma}^2 = \dfrac{1}{n} \sum\limits_{i = 1}^n (X_i - \hat{\mu})^2$.
+
+计算上述均值估计的期望,知
+
+\begin{align*}
+    E(\hat{\mu}) & = E \left( \dfrac{1}{n} \sum_{i = 1}^n X_i \right) \\
+    & = \dfrac{1}{n} \sum_{i = 1}^n E(X_i) \\
+    & = \dfrac{1}{n} \cdot n \mu \\
+    & = \mu
+\end{align*}
+
+因此$E(\hat{\mu} - \mu) = 0$,这是无偏估计.
+
+计算上述方差估计的期望,知
+
+\begin{align*}
+    E(\hat{\sigma}^2) & = E \left( \dfrac{1}{n} \sum_{i = 1}^n (X_i - \hat{\mu})^2 \right) \\
+    & = \dfrac{1}{n} E \left( \sum_{i = 1}^n (X_i - \hat{\mu})^2 \right) \\
+    & = \dfrac{1}{n} E \left( \sum_{i = 1}^n ((X_i - \mu) - (\hat{\mu} - \mu))^2 \right) \\
+    & = \dfrac{1}{n} E \left( \sum_{i = 1}^n \left( (X_i - \mu)^2 - 2(X_i - \mu)(\hat{\mu} - \mu) + (\hat{\mu} - \mu)^2 \right) \right) \\
+    & = \dfrac{1}{n} E \left( \sum_{i = 1}^n (X_i - \mu)^2 - 2(\hat{\mu} - \mu) \sum_{i = 1}^n (X_i - \mu) + \sum_{i = 1}^n (\hat{\mu} - \mu)^2 \right) \\
+    & = \dfrac{1}{n} \left( \sum_{i = 1}^n E \left( (X_i - \mu)^2 \right) -2nE \left( (\hat{\mu} - \mu)^2 \right) + nE \left( (\hat{\mu} - \mu)^2 \right)  \right) \\
+    & = \dfrac{1}{n} \sum_{i = 1}^n E \left( (X_i - \mu)^2 \right) - E \left( (\hat{\mu} - \mu)^2 \right) \\
+    & = \dfrac{1}{n} \sum_{i = 1}^n D(X_i) - D(\hat{\mu}) \\
+    & = \dfrac{1}{n} \sum_{i = 1}^n D(X) - D \left( \dfrac{1}{n} \sum\limits_{i = 1}^n X_i \right) \\
+    & = \sigma^2  - \dfrac{1}{n^2} \sum_{i = 1}^n D(X_i) \\
+    & = \sigma^2 - \dfrac{\sigma^2}{n} \\
+    & = \dfrac{n - 1}{n} \sigma^2
+\end{align*}
+
+我们看到,$\hat{\sigma}^2$的期望为$\dfrac{n - 1}{n} \sigma^2$,这并不是无偏估计.
+但是容易看出$\dfrac{n}{n - 1} \hat{\sigma}^2$的期望为$\sigma^2$,这正是无偏估计.
+
+且$\dfrac{n}{n - 1} \hat{\sigma}^2 = \dfrac{1}{n - 1} \sum\limits_{i = 1}^n (X_i - \hat{\mu})^2$,
+这正是课本中提到的计算器求方差的公式.
+
+\end{document}
