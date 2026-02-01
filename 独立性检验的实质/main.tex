@@ -1,0 +1,108 @@
+\documentclass{article}
+\usepackage{../mathnotezh}
+
+\hypersetup{
+    pdftitle={独立性检验的实质},
+    pdfauthor={tbj},
+    pdfsubject={Maths},
+    pdfcreator={LaTeX},
+    pdfproducer={XeLaTeX}
+}
+
+\title{独立性检验的实质}
+\author{tbj}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{引言}
+
+独立性检验,是我们高中数学的最后一个知识点(按课本顺序),它也出现在了25年的高考题中.
+但是,许多同学对独立性检验的认识只停留在套用公式(甚至不需要记背,试卷上会给出公式),
+比较$\chi^2$与临界值(同样写在题干上),给出答案.
+
+出于应试的要求,我们没有必要完全理解独立性检验,但是笔者还是想写点东西,帮助大家理解独立性检验的实质.
+
+\section{零假设}
+
+考虑以$\Omega$为样本空间的古典概型,设$X, Y$为定义在$\Omega$上,取值于$\{ 0, 1 \}$的随机变量.
+
+在高中课本中,我们定义了零假设$H_0$为``分类变量$X$与$Y$独立''.
+设在$X = 1$组中,$Y = 1$的概率为$p$;在$X = 0$组中,$Y = 1$的概率为$p$,那么$H_0$即为$p = q$.
+
+\section{试验与随机变量}
+
+我们进行若干次试验,得到如下抽样数据列联表.
+
+\begin{table}[ht]
+\centering
+\caption{试验结果}
+\begin{tabular}{|c|c|c|c|}
+    \hline
+    & $X = 1$ & $X = 0$ & 合计 \\
+    \hline
+    $Y = 1$ & $a$ & $b$ & $a + b$ \\
+    \hline
+    $Y = 0$ & $c$ & $d$ & $c + d$ \\
+    \hline
+    合计 & $a + c$ & $b + d$ & $a + b + c + d$ \\
+    \hline
+\end{tabular}
+\end{table}
+
+在$X = 1$时对$Y$试验$m$次,记$Y = 1$的次数为$a$;在$X = 0$时对$Y$试验$n$次,记$Y = 1$的次数为$b$.
+则$a, b$服从二项分布,即$a \sim B(m, p), b \sim B(n, q)$.
+
+我们希望建立一个统计量$Z$,用于检验$H_0$是否成立.
+我们希望$Z$在不同的统计场景下都是一致的,也就是说,无论$X$与$Y$的分布是怎样的,$Z$总是具有相同的分布.
+那么最简单地,我们希望有$E(Z) = 0, D(Z) = 1$.
+
+\section{统计量的构造}
+
+考虑统计量$Z$为$a$与$b$的一个线性组合$\lambda a + \mu b$,计算知
+
+\[ E(\lambda a + \mu b) = \lambda E(a) + \mu E(b) = \lambda mp + \mu nq \]
+
+且$a$与$b$是独立的,那么
+
+\[ D(\lambda a + \mu b) = \lambda^2 D(a) + \mu^2 D(b) = \lambda^2 mp(1 - p) + \mu^2 nq(1 - q) \]
+
+因此
+
+\[ \begin{cases}
+    \lambda = \dfrac{n}{\sqrt{mn(m + n)p(1 - p)}} \\ \mu = -\dfrac{m}{\sqrt{mn(m + n)p(1 - p)}}
+\end{cases} \]
+
+当$m, n$足够大时,$Z$近似服从正态分布$Z \sim N(0, 1)$.
+且代入概率的估计值$p = q = \dfrac{a + b}{m + n}$得
+
+\[ Z^2 = \dfrac{(m + n)(na - mb)^2}{mn(a + b)(m + n - a - b)} = \dfrac{(ad - bc)^2(a + b + c + d)}{(a + b)(a + c)(b + d)(c + d)} \]
+注意到最后就是$\chi^2$,这就说明我们应当用$\chi^2$作为统计量.
+
+\section{检验}
+
+通过前面的计算可知,$Z$总是近似服从正态分布$Z \sim N(0, 1)$,而$\chi^2 = Z^2$.
+那么无论$X$与$Y$原本的分布是怎样的,对于某个临界值$x_\alpha$,都有
+\[ P(\chi^2 > x_\alpha) = 2P(Z > \sqrt{x_\alpha}) = 2\int_{\sqrt{x_\alpha}}^{+\infty} \dfrac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}} \dif x \]
+
+利用计算工具可以得到小概率值$\alpha$与临界值$x_{\alpha}$之间的关系.
+
+\begin{table}[ht]
+    \centering
+    \caption{临界值}
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        $\alpha$ & 0.1 & 0.05 & 0.01 & 0.005 & 0.001 \\
+        \hline
+        $\sqrt{x_\alpha}$ & 1.6449 & 1.96 & 2.5758 & 2.807 & 3.2905 \\
+        \hline
+        $x_\alpha$ & 2.706 & 3.841 & 6.635 & 7.879 & 10.828 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+这与课本上列出的无异.
+
+\end{document}
