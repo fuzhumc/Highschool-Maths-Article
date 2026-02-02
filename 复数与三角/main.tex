@@ -1,0 +1,196 @@
+\documentclass{article}
+\usepackage{../mathnotezh}
+
+\hypersetup{
+    pdftitle={复数与三角},
+    pdfauthor={tbj},
+    pdfsubject={Maths},
+    pdfcreator={LaTeX},
+    pdfproducer={XeLaTeX}
+}
+
+\title{复数与三角}
+\author{tbj}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{引言}
+
+我们熟知,复数具有三角形式$z = r(\cos \theta + i \sin \theta)$.其中,$r$为其模长,$\theta$为其辐角.
+而两复数相乘意味着”模长相乘,辐角相加”.这提示我们,复数运算与三角函数之间存在着密切联系.
+利用复数的工具,我们可以解决一系列三角问题.
+
+\section{两角和(差)}
+
+设$z_1 = \cos \alpha + i \sin \alpha, z_2 = \cos \beta + i \sin \beta$分别为以$\alpha, \beta$为辐角的单位复数.
+
+由复数乘法的几何意义知
+
+\begin{equation}
+    z_1z_2 = \cos (\alpha + \beta) + i \sin (\alpha + \beta) \label{1}
+\end{equation}
+
+由复数乘法运算得
+
+\begin{align}
+z_1z_2 & = (\cos \alpha + i \sin \alpha)(\cos \beta + i \sin \beta) \notag \\
+& = (\cos \alpha \cos \beta - \sin \alpha \sin \beta) + i (\sin \alpha \cos \beta + \cos \alpha \sin \beta) \label{2}
+\end{align}
+
+\eqref{1} 与 \eqref{2} 比较实,虚部,可知
+
+\begin{align*}
+    \cos (\alpha + \beta) = \cos \alpha \cos \beta - \sin \alpha \sin \beta \\
+    \sin (\alpha + \beta) = \sin \alpha \cos \beta + \cos \alpha \sin \beta
+\end{align*}
+
+此即为两角和公式,同理可得两角差公式.
+
+\section{和差化积}
+
+设$z_1 = \cos \alpha + i \sin \alpha, z_2 = \cos \beta + i \sin \beta$分别对应单位圆上的点$Z_1, Z_2$.
+记
+
+\begin{equation} z_3 = z_1 + z_2 = (\cos \alpha + \cos \beta) + i (\sin \alpha + \sin \beta) \label{3} \end{equation}
+
+对应单位圆上的点$Z_3$.则四边形$OZ_1Z_3Z_2$为平行四边形.
+
+于是复数$z_3$的辐角为$\dfrac{\alpha + \beta}{2}$,模长为
+
+\begin{align*}
+    \lvert z_3 \rvert & = \sqrt{\lvert z_1 \rvert^2 + \lvert z_2 \rvert^2 + 2 \lvert z_1 \rvert \lvert z_2 \rvert \cos (\alpha - \beta)} \\
+    & = \sqrt{2 + 2 \cos (\alpha - \beta)} \\
+    & = 2 \cos \dfrac{\alpha - \beta}{2}
+\end{align*}
+
+因此
+
+\begin{equation}
+    z_3 = 2 \cos \dfrac{\alpha - \beta}{2} \left(  \cos \dfrac{\alpha + \beta}{2} + i \sin \dfrac{\alpha + \beta}{2} \right) \label{4}
+\end{equation}
+
+\eqref{3} 与 \eqref{4} 比较实,虚部,可知
+
+\begin{align*}
+    \cos \alpha + \cos \beta & = 2 \cos \dfrac{\alpha - \beta}{2} \cos \dfrac{\alpha + \beta}{2} \\
+    \sin \alpha + \sin \beta & = 2 \cos \dfrac{\alpha - \beta}{2} \sin \dfrac{\alpha + \beta}{2}
+\end{align*}
+
+此即为和化积公式,同理可得差化积公式.逆用和差化积公式可得积化和差公式.
+
+\section{三角函数的连和}
+
+记$z_0 = \cos \varphi + i \sin \varphi, \omega = \cos \theta + i \sin \theta$.
+设$(z_n)_{n \in \bbN}$为以$z_0$为首项,$\omega$为公比的等比复序列,
+则 \par \[ z_k = z_0 \omega^k = \cos (k \theta + \varphi) + i \sin (k \theta + \varphi) \]
+\par 由等比数列的求和公式知 \par \[ \sum\limits_{k = 0}^n z_k = z_0 \cdot \dfrac{\omega^{n + 1} - 1}{\omega - 1} \] \par 其中
+
+\begin{align*}
+    \omega - 1 & = \cos \theta - 1 + i \sin \theta \notag \\
+    & = 2 \sin \dfrac{\theta}{2} \left( -\sin \dfrac{\theta}{2} + i \cos \dfrac{\theta}{2} \right) \notag \\
+    & = 2 \sin \dfrac{\theta}{2} \left( \cos \left( \dfrac{\theta}{2} + \dfrac{\pi}{2} \right) +
+        i \sin \left( \dfrac{\theta}{2} + \dfrac{\pi}{2} \right) \right) \\
+    \omega^{n + 1} - 1 & = 2 \sin \dfrac{(n + 1) \theta}{2} \left( \cos \left( \dfrac{(n + 1) \theta}{2} +
+        \dfrac{\pi}{2} \right) + i \sin \left( \dfrac{(n + 1) \theta}{2} + \dfrac{\pi}{2} \right) \right)
+\end{align*}
+
+从而
+
+\begin{align}
+    & z_0 \cdot \dfrac{\omega^{n + 1} - 1}{\omega - 1} \notag \\
+    & = (\cos \varphi + i \sin \varphi) \cdot \dfrac{2 \sin \frac{(n + 1) \theta}{2}
+        \left( \cos \left( \dfrac{(n + 1) \theta}{2} + \dfrac{\pi}{2} \right) + i \sin \left( \dfrac{(n + 1) \theta}{2}
+        + \dfrac{\pi}{2} \right) \right)}{2 \sin \dfrac{\theta}{2}\left( \cos \left( \dfrac{\theta}{2} + \dfrac{\pi}{2} \right)
+        + i \sin \left( \dfrac{\theta}{2} + \dfrac{\pi}{2} \right) \right)} \notag \\
+    & = \dfrac{\sin \frac{(n + 1) \theta}{2}}{\sin \frac{\theta}{2}} \cdot \left( \cos \left( \varphi +
+        \dfrac{n \theta}{2} \right) + i \sin \left( \varphi + \dfrac{n \theta}{2} \right) \right) \label{5}
+\end{align}
+
+而
+
+\begin{equation}
+    \sum\limits_{k = 0}^n z_k = \sum\limits_{k = 0}^n \cos (k \theta + \varphi) +
+    i \sum\limits_{k = 0}^n \sin (k \theta + \varphi) \label{6}
+\end{equation}
+
+\eqref{5} 与 \eqref{6} 比较实,虚部,可知
+
+\begin{align*}
+    \sum_{k = 0}^n \cos (k \theta + \varphi) & = \dfrac{\sin \frac{(n + 1) \theta}{2} \cdot
+        \cos \left( \varphi + \frac{n \theta}{2} \right)}{\sin \frac{\theta}{2}} \\
+    \sum_{k = 0}^n \sin (k \theta + \varphi) & = \dfrac{\sin \frac{(n + 1) \theta}{2} \cdot
+        \sin \left( \varphi + \frac{n \theta}{2} \right)}{\sin \frac{\theta}{2}}
+\end{align*}
+
+\section{三角函数的连乘积}
+
+记$\xi = \cos \dfrac{2 \pi}{n} + i \sin \dfrac{2 \pi}{n}$为$n$次单位根,
+则$\xi^k = \cos \dfrac{2k \pi}{n} + i \sin \dfrac{2k \pi}{n}$,易知
+
+\begin{equation*}
+    \left\lvert 1 - \xi^k \right\rvert = 2 \sin \dfrac{k \pi}{n}, \quad
+    \left\lvert 1 + \xi^k \right\rvert = 2 \left\lvert \cos \dfrac{k \pi}{n} \right\rvert
+\end{equation*}
+
+且 \par
+
+\begin{align*}
+    \prod\limits_{k = 1}^{n - 1} \left( 1 - \xi^k \right) = n \\
+    \prod\limits_{k = 1}^{n - 1} \left( 1 + \xi^k \right) = \dfrac{1 - (-1)^n}{2}
+\end{align*}
+
+\section{导函数}
+
+熟知 Euler 公式
+
+\begin{equation}
+    e^{ix} = \cos x + i \sin x \label{7}
+\end{equation}
+
+用$-x$代换$x$得
+
+\begin{equation}
+    e^{-ix} = \cos x - i \sin x \label{8}
+\end{equation}
+
+联立 \eqref{7} 与 \eqref{8},可得
+
+\begin{align*}
+    \cos x & = \dfrac{e^{ix} + e^{-ix}}{2} \\
+    \sin x & = \dfrac{e^{ix} - e^{-ix}}{2i}
+\end{align*}
+
+因此
+
+\begin{align*}
+    (\cos x)' & = \left( \dfrac{e^{ix} + e^{-ix}}{2} \right)' \\
+    & = \dfrac{ie^{ix} - ie^{-ix}}{2} \\
+    & = -\sin x \\
+    (\sin x)' & = \left( \dfrac{e^{ix} - e^{-ix}}{2i} \right)' \\
+    & = \dfrac{ie^{ix} + ie^{-ix}}{2i} \\
+    & = \cos x
+\end{align*}
+
+\section{旋转变换}
+
+对于点$Z(x, y)$及其对应的复数$z = x + yi$,设点$Z$关于原点$O$旋转$\theta$后得到点$Z'(x', y')$,对应复数$z' = x' + y'i$.
+记$\omega = \cos \theta + i \sin \theta$,则$z' = \omega \cdot z$,即
+
+\begin{align*}
+    x' + y'i & = (x + yi)(\cos \theta + i \sin \theta) \\
+    & = (x \cos \theta - y \sin \theta) + i(x \sin \theta + y \cos \theta)
+\end{align*}
+
+比较实,虚部,可知
+
+\begin{align*}
+    x' & = x \cos \theta - y \sin \theta \\
+    y' & = x \sin \theta + y \cos \theta
+\end{align*}
+
+此即为旋转变换公式.
+
+\end{document}
