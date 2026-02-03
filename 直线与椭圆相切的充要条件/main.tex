@@ -1,0 +1,102 @@
+\documentclass{article}
+\usepackage{../mathnotezh}
+
+\hypersetup{
+    pdftitle={直线与椭圆相切的充要条件},
+    pdfauthor={tbj},
+    pdfsubject={Maths},
+    pdfcreator={LaTeX},
+    pdfproducer={XeLaTeX}
+}
+
+\title{直线与椭圆相切的充要条件}
+\author{tbj}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+对于直线$l: Ax + By + C = 0$与椭圆$\Gamma: \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} = 1$,欲判定二者是否相切,
+常规的办法是联立消去$x$(或$y$),得到一个关于$y$(或$x$)的一元二次方程,然后判定其判别式是否为零.
+但这样计算复杂.事实上,我们有如下定理
+
+\begin{thm}
+    直线$l: Ax + By + C = 0$与椭圆$\Gamma: \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} = 1$相切的充分必要条件是
+    \[ A^2a^2 + B^2b^2 = C^2 \]
+\end{thm}
+
+接下来我们给出三种证法.
+
+\paragraph{法一}
+
+\begin{enumerate}[label=(\arabic*)]
+    \item \label{1} 若$l$与$\Gamma$相切,设切点为$P(x_0, y_0)$.
+        $\Gamma$在$P$处的切线方程为$\dfrac{x_0x}{a^2} + \dfrac{y_0y}{b^2} = 1$.因此
+        \[ \begin{cases}
+            \dfrac{x_0}{a^2} = -\dfrac{A}{C} \\
+            \dfrac{y_0}{b^2} = -\dfrac{B}{C}
+        \end{cases} \]
+        解得
+        \[ \begin{cases}
+            x_0 = -\dfrac{Aa^2}{C} \\
+            y_0 = -\dfrac{Bb^2}{C}
+        \end{cases} \]
+        由$P$在$l$上知$Ax_0 + By_0 + C = 0$,代入知$A^2a^2 + B^2b^2 = C^2$.
+    \item \label{2} 若$A^2a^2 + B^2b^2 = C^2$,取点$P(x_0, y_0)$,其中
+        \[ \begin{cases}
+            x_0 = -\dfrac{Aa^2}{C} \\
+            y_0 = -\dfrac{Bb^2}{C}
+        \end{cases} \]
+        由\[ \dfrac{x_0^2}{a^2} + \dfrac{y_0^2}{b^2} = \dfrac{A^2a^4}{a^2C^2} + \dfrac{B^2b^4}{b^2C^2}
+        = \dfrac{A^2a^2 + B^2b^2}{C^2} = 1 \]知点$P$在$\Gamma$上.
+        进而$P$处的切线方程为$\dfrac{x_0x}{a^2} + \dfrac{y_0y}{b^2} = 1$.
+        即$-\dfrac{A}{C} x - \dfrac{B}{C} y = 1$,亦即$Ax + By + C = 0$.
+        因此$l$与$\Gamma$相切.
+\end{enumerate}
+
+综合 \ref{1} 与 \ref{2},定理得证.
+
+\begin{rqq}
+    证明过程中运用了椭圆上一点处的切线公式$\dfrac{x_0x}{a^2} + \dfrac{y_0y}{b^2} = 1$.
+\end{rqq}
+
+\paragraph{法二}
+
+作仿射变换$x' = \dfrac{x}{a}, y' = \dfrac{y}{b}$,则$\Gamma': x'^2 + y'^2 = 1$为单位圆,$l': Aax' + Bby' + C = 0$,
+则原点到$l'$的距离为
+
+\[d = \dfrac{|C|}{\sqrt{A^2a^2 + B^2b^2}} \]
+
+因此
+
+\begin{align*}
+    l \text{与} \Gamma \text{相切} & \iff l' \text{与} \Gamma' \text{相切} \\
+    & \iff d = 1 \\
+    & \iff A^2a^2 + B^2b^2 = C^2
+\end{align*}
+
+定理得证.
+
+\paragraph{法三}
+
+当$l$过原点时,显然$l$与$\Gamma$相交,且$A^2a^2 + B^2b^2 = C^2$.
+当$l$不过原点时,考虑齐次化$1 = -\dfrac{Ax + By}{C}$,代入$\Gamma$的方程得
+
+\[ \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} = \dfrac{(Ax + By)^2}{C^2} \]
+
+同除$x^2$化简得
+
+\[ (B^2a^2b^2 - a^2C^2) \left( \dfrac{y}{x} \right)^2 + (2ABa^2b^2) \left( \dfrac{y}{x} \right) + (A^2a^2b^2 - b^2C^2) = 0 \]
+
+其判别式为
+
+\begin{align*}
+    \Delta & = (2ABa^2b^2)^2 - 4(B^2a^2b^2 - a^2C^2)(A^2a^2b^2 - b^2C^2) \\
+    & = 4A^2B^2a^4b^4 - 4(B^2a^2b^2 - a^2C^2)(A^2a^2b^2 - b^2C^2) \\
+    & = 4a^2b^2C^2(A^2a^2 + B^2b^2 - C^2)
+\end{align*}
+
+故$l$与$\Gamma$相切$\iff \Delta = 0 \iff A^2a^2 + B^2b^2 = C^2$.定理得证.
+
+\end{document}
