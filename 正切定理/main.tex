@@ -1,0 +1,44 @@
+\documentclass{article}
+\usepackage{../mathnotezh}
+
+\title{正切定理}
+\author{tbj}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+已知三角形的三边长,就唯一确定了该三角形,于是我们可以确定其三个内角.
+如何求其内角呢?传统的方法是运用余弦定理,但这样形式丑陋.我们给出下面的定理.
+
+\begin{thm}
+    在$\triangle ABC$中,设顶点$A, B, C$所对的边长分别为$a, b, c$,半周长$p = \frac{a + b + c}{2}$.
+    则$\tan \frac{A}{2} = \sqrt{\frac{(p - b)(p - c)}{p(p - a)}},
+    \tan \frac{B}{2} = \sqrt{\frac{(p - c)(p - a)}{p(p - b)}}, \tan \frac{C}{2} = \sqrt{\frac{(p - a)(p - b)}{p(p - c)}}$.
+\end{thm}
+
+\begin{proof}
+    由二倍角公式与余弦定理知
+    \begin{align*}
+        \sin \frac{A}{2} & = \sqrt{\frac{1 - \cos A}{2}} = \sqrt{\frac{1 - \frac{b^2 + c^2 - a^2}{2bc}}{2}}
+            = \sqrt{\frac{a^2 - (b - c)^2}{4bc}} \\
+        & = \sqrt{\frac{(a + b - c)(a - b + c)}{4bc}} = \sqrt{\frac{(p - b)(p - c)}{bc}} \\
+        \cos \frac{A}{2} & = \sqrt{\frac{1 + \cos A}{2}} = \sqrt{\frac{1 + \frac{b^2 + c^2 - a^2}{2bc}}{2}}
+            = \sqrt{\frac{(b + c)^2 - a^2}{4bc}} \\
+        & = \sqrt{\frac{(a + b + c)(b + c - a)}{4bc}} = \sqrt{\frac{p(p - a)}{bc}} \\
+    \end{align*}
+
+    因此
+    \[ \tan \frac{A}{2} = \frac{\sin \frac{A}{2}}{\cos \frac{A}{2}} = \sqrt{\frac{(p - b)(p - c)}{p(p - a)}} \]
+
+    同理可得另外两式.
+\end{proof}
+
+由于我们有三角函数的万能公式,可以从$\tan \frac{A}{2}$求出$\sin A, \cos A, \tan A$.
+
+由几何关系知$\tan \frac{A}{2} = \frac{r}{p - a}$,其中$r$为内切圆半径.
+于是可得$r = \sqrt{\frac{(p - a)(p - b)(p - c)}{p}}$,又由于$Area = p \cdot r$,
+知$Area = \sqrt{p(p - a)(p - b)(p - c)}$,这样得到了海伦公式.
+
+\end{document}
