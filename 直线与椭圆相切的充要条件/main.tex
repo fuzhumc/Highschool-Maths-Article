@@ -1,14 +1,6 @@
 \documentclass{article}
 \usepackage{../mathnotezh}
 
-\hypersetup{
-    pdftitle={直线与椭圆相切的充要条件},
-    pdfauthor={tbj},
-    pdfsubject={Maths},
-    pdfcreator={LaTeX},
-    pdfproducer={XeLaTeX}
-}
-
 \title{直线与椭圆相切的充要条件}
 \author{tbj}
 \date{}
@@ -98,5 +90,21 @@
 \end{align*}
 
 故$l$与$\Gamma$相切$\iff \Delta = 0 \iff A^2a^2 + B^2b^2 = C^2$.定理得证.
+
+对于中心不在原点处的椭圆,我们有如下推广的定理.
+
+\begin{thm} \label{thm2}
+    直线$l: Ax + By + C = 0$与椭圆$\Gamma: \dfrac{(x - x_0)^2}{a^2} + \dfrac{(y - y_0)^2}{b^2} = 1$相切的充分必要条件是
+    \[ A^2a^2 + B^2b^2 = (Ax_0 + By_0 + C)^2 \]
+\end{thm}
+
+对于双曲线,我们也有类似的定理.
+
+\begin{thm} \label{thm3}
+    直线$l: Ax + By + C = 0$与双曲线$\Gamma: \dfrac{x^2}{a^2} - \dfrac{y^2}{b^2} = 1$相切的充分必要条件是
+    \[ A^2a^2 - B^2b^2 = C^2 \]
+\end{thm}
+
+定理 \ref{thm2} 与 定理 \ref{thm3} 的证明留给读者思考.
 
 \end{document}

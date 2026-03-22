@@ -1,0 +1,114 @@
+\documentclass{article}
+\usepackage{../mathnotezh}
+
+\title{空间直线夹角的转化}
+\author{tbj}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+对于空间中四点$A, B, C, D$,要想求直线$AB, CD$的夹角,只要知道四个点两两之间的距离即可.
+具体地说,我们有如下定理
+
+\begin{thm}
+    对于空间中四点$A, B, C, D$,设直线$AB, CD$之间的夹角为$\theta$,则
+    \begin{equation}
+        \cos \theta = \dfrac{\lrvert{\lrvert{AD}^2 + \lrvert{BC}^2 -
+        \lrvert{AC}^2 - \lrvert{BD}^2}}{2 \lrvert{AB} \lrvert{CD}} \label{1}
+    \end{equation}
+\end{thm}
+
+我们用三种方法证明该定理.
+
+\paragraph{几何法}
+
+将$CD$平移至$EF$,使得$A, B, E, F$四点共面,且$CE, DF$垂直于该平面.
+设直线$AB, EF$交于点$P$,则$\cos \theta = \lrvert{\cos P}$,
+且$\lrvert{CD} = \lrvert{EF}, \lrvert{CE} = \lrvert{DF} = d$.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{fig1.pdf}
+\end{figure}
+
+因此我们有
+\begin{align*}
+    \lrvert{AC}^2 & = \lrvert{AE}^2 + d^2 \\
+    \lrvert{AD}^2 & = \lrvert{AF}^2 + d^2 \\
+    \lrvert{BC}^2 & = \lrvert{BE}^2 + d^2 \\
+    \lrvert{BD}^2 & = \lrvert{BF}^2 + d^2 \\
+    \lrvert{AE}^2 & = \lrvert{PA}^2 + \lrvert{PE}^2 - 2 \lrvert{PA} \lrvert{PE} \cos P \\
+    \lrvert{AF}^2 & = \lrvert{PA}^2 + \lrvert{PF}^2 - 2 \lrvert{PA} \lrvert{PF} \cos P \\
+    \lrvert{BE}^2 & = \lrvert{PB}^2 + \lrvert{PE}^2 - 2 \lrvert{PB} \lrvert{PE} \cos P \\
+    \lrvert{BF}^2 & = \lrvert{PB}^2 + \lrvert{PF}^2 - 2 \lrvert{PB} \lrvert{PF} \cos P
+\end{align*}
+
+进而
+\begin{align*}
+    & \dfrac{\lrvert{\lrvert{AD}^2 + \lrvert{BC}^2 - \lrvert{AC}^2 - \lrvert{BD}^2}}{2 \lrvert{AB} \lrvert{CD}} \\
+    & = \dfrac{\lrvert{\lrvert{AF}^2 + \lrvert{BE}^2 - \lrvert{AE}^2 - \lrvert{BF}^2}}{2 \lrvert{AB} \lrvert{CD}} \\
+    & = \lrvert{\cos P} \dfrac{\lrvert{\lrvert{PA} \lrvert{PE} + \lrvert{PB} \lrvert{PF} -
+        \lrvert{PA} \lrvert{PF} - \lrvert{PB} \lrvert{PE}}}{\lrvert{AB} \lrvert{EF}} \\
+    & = \lrvert{\cos P} \dfrac{\lrvert{\lrvert{PA} - \lrvert{PB}} \lrvert{\lrvert{PE} -
+        \lrvert{PF}}}{\lrvert{AB} \lrvert{EF}} \\
+    & = \lrvert{\cos P} \\
+    & = \cos \theta \tag*{\qed}
+\end{align*}
+
+\begin{rqq}
+    上述方法运用了勾股定理,余弦定理,计算繁复,接下来给出简单一点的方法.
+\end{rqq}
+
+\paragraph{向量法1}
+
+事实上,可以证明
+\begin{equation}
+    2 \vec{AB} \cdot \vec{CD} = \vec{AD}^2 + \vec{BC}^2 -
+    \vec{AC}^2 - \vec{BD}^2 \label{2}
+\end{equation}
+
+我们有
+\begin{align*}
+    & \vec{AD}^2 + \vec{BC}^2 - \vec{AC}^2 - \vec{BD}^2 \\
+    & = \left( \vec{AD}^2 - \vec{AC}^2 \right) - \left( \vec{BD}^2 - \vec{BC}^2 \right) \\
+    & = \left( \vec{AD} + \vec{AC} \right) \left( \vec{AD} - \vec{AC} \right) -
+        \left( \vec{BD} + \vec{BC} \right) \left( \vec{BD} - \vec{BC} \right) \\
+    & = \left( (\vec{AC} - \vec{BC}) + (\vec{AD} - \vec{BD}) \right)
+        \cdot \vec{CD} \\
+    & = 2 \vec{AB} \cdot \vec{CD}
+\end{align*}
+
+\eqref{2} 得证.两边同除$2 \lrvert{\vec{AB}} \lrvert{\vec{CD}}$并注意到
+$\cos \theta = \lrvert{\cos \langle \vec{AB}, \vec{CD} \rangle}$即证 \eqref{1}. \hfill\qed
+
+\paragraph{向量法2}
+
+设$O$为原点(事实上可以为空间中任意一点),要证 \eqref{2},只要证
+\[ 2(\vec{OB} - \vec{OA})(\vec{OD} - \vec{OC}) = (\vec{OD} - \vec{OA})^2 + (\vec{OC} - \vec{OB})^2 -
+(\vec{OC} - \vec{OA})^2 - (\vec{OD} - \vec{OB})^2 \]
+
+展开即得. \hfill\qed
+
+\begin{rqq}
+    上述结论的一种特殊情况是$AB \perp CD \iff \lrvert{AC}^2 - \lrvert{AD}^2 = \lrvert{BC}^2 - \lrvert{BD}^2$,
+    这在平面几何中称为\textbf{定差幂线引理}.
+\end{rqq}
+
+\begin{rqq}
+    上述结论的另一种特殊情况是$AB \parallel CD \iff \lrvert{\lrvert{AD}^2 + \lrvert{BC}^2 - \lrvert{AC}^2 - \lrvert{BD}^2} =
+    2\lrvert{AB} \lrvert{CD}$.
+\end{rqq}
+
+\begin{rqq}
+    点$A, B, C, D$可以在直线上任意选取(不能重合),不改变两直线的夹角.这意味着,
+    $\dfrac{\lrvert{\lrvert{AD}^2 + \lrvert{BC}^2 - \lrvert{AC}^2 - \lrvert{BD}^2}}{2 \lrvert{AB} \lrvert{CD}}$
+    为一种不变量.
+\end{rqq}
+
+\begin{rqq}
+    向量法2对 \eqref{2} 的证明没有涉及三维空间的性质,也没有涉及空间中的作图,这表明我们的结论在高维空间中仍然成立.
+\end{rqq}
+
+\end{document}

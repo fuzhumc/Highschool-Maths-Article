@@ -1,0 +1,85 @@
+\documentclass{article}
+\usepackage{../mathnotezh}
+
+\title{三面角余弦定理}
+\author{tbj}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+设$OA, OB, OC$为空间中共顶点的三条射线,这样所成的几何结构称为\textbf{三面角}.
+
+考虑这样所成的三个平面角$\angle AOB, \angle BOC, \angle COA$,
+以及三个二面角$B \mbox{-} OA \mbox{-} C, C \mbox{-} OB \mbox{-} A, A \mbox{-} OC \mbox{-} B$
+(分别记为$\angle OA, \angle OB, \angle OC$).
+
+注意到,将$A, B, C$在其分别所在的射线上滑动,不会改变上述六个角的值.
+于是不妨设$OA \perp AB, AC$,则$\angle OA = \angle BAC$.
+
+由$\triangle ABC$中的余弦定理知$\cos \angle BAC = \dfrac{AB^2 + AC^2 - BC^2}{2AB \cdot AC}$.
+
+其中
+\begin{align*}
+    AB^2 & = OB^2 - OA^2 \\
+    AC^2 & = OC^2 - OA^2 \\
+    BC^2 & = OB^2 + OC^2 - 2 OB \cdot OC \cos \angle BOC
+\end{align*}
+
+代入得
+\begin{align*}
+    \cos \angle OA & = \dfrac{2OB \cdot OC \cos \angle BOC - 2OA^2}{2AB \cdot AC} \\
+    & = \dfrac{\cos \angle BOC - \frac{OA}{OB} \frac{OA}{OC}}{\frac{AB}{OB} \frac{AC}{OC}} \\
+    & = \dfrac{\cos \angle BOC - \cos \angle AOB \cos \angle AOC}{\sin \angle AOB \sin \angle AOC}
+\end{align*}
+
+这样,我们就得到了如下定理.
+
+\begin{thm}[三面角第一余弦定理]
+    设$OA, OB, OC$为空间中共顶点的三条射线,则所成三面角的二面角为
+    \begin{align}
+        \cos \angle OA & = \dfrac{\cos \angle BOC - \cos \angle AOB \cos \angle AOC}{\sin \angle AOB \sin \angle AOC} \label{1} \\
+        \cos \angle OB & = \dfrac{\cos \angle AOC - \cos \angle AOB \cos \angle BOC}{\sin \angle AOB \sin \angle BOC} \label{2} \\
+        \cos \angle OC & = \dfrac{\cos \angle AOB - \cos \angle BOC \cos \angle AOC}{\sin \angle BOC \sin \angle AOC} \label{3}
+    \end{align}
+\end{thm}
+
+反过来,我们也可以由二面角的余弦值求出平面角的余弦值.
+
+\begin{thm}[三面角第二余弦定理]
+    设$OA, OB, OC$为空间中共顶点的三条射线,则所成三面角的平面角为
+    \begin{align*}
+        \cos \angle AOB & = \dfrac{\cos \angle OC + \cos \angle OA \cos \angle OB}{\sin \angle OA \sin \angle OB} \\
+        \cos \angle BOC & = \dfrac{\cos \angle OA + \cos \angle OB \cos \angle OC}{\sin \angle OB \sin \angle OC} \\
+        \cos \angle AOC & = \dfrac{\cos \angle OB + \cos \angle OC \cos \angle OA}{\sin \angle OC \sin \angle OA}
+    \end{align*}
+\end{thm}
+
+\begin{proof}
+    将 \eqref{3} 改写为
+    \begin{equation}
+        \cos \angle AOB  = \cos \angle OC \sin \angle BOC \sin \angle AOC + \cos \angle BOC \cos \angle AOC \label{4}
+    \end{equation}
+
+    另外,由 \eqref{1}, \eqref{2} 可得
+    \begin{align*}
+        \sin \angle BOC & = \dfrac{\sin \angle OA}{\sin \angle AOB} \\
+        \sin \angle AOC & = \dfrac{\sin \angle OB}{\sin \angle AOB}
+    \end{align*}
+
+    代入 \eqref{4} 可得
+    \begin{align*}
+        \cos \angle AOB & = \cos \angle OC \cdot \dfrac{\sin \angle OA}{\sin \angle AOB} \cdot
+            \dfrac{\sin \angle OB}{\sin \angle AOB} + \cos \angle BOC \cos \angle AOC \\
+        & = \dfrac{\cos \angle OC \sin \angle OA \sin \angle OB + \cos \angle OA \cos \angle OB \sin^2 \angle AOB}
+            {\sin^2 \angle AOB}
+    \end{align*}
+
+    注意到$\sin^2 \angle AOB = 1 - \cos^2 \angle AOB$,代入整理得
+    \[ \cos \angle AOB = \dfrac{\cos \angle OC + \cos \angle OA \cos \angle OB}{\sin \angle OA \sin \angle OB} \]
+
+    类似可得剩余两式.
+\end{proof}
+
+\end{document}
